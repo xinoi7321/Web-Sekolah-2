@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const links = [
@@ -11,13 +12,28 @@ const links = [
 ];
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
   return (
     <header className="navbar">
       <div className="navbar-inner">
         <span className="brand">Website Sekolah</span>
-        <nav className="nav-links">
+        <button
+          className="nav-toggle"
+          aria-label="Toggle menu"
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? '✕' : '☰'}
+        </button>
+        <nav className={`nav-links ${open ? 'open' : ''}`}>
           {links.map((l) => (
-            <NavLink key={l.to} to={l.to} end={l.end} className={({ isActive }) => (isActive ? 'active' : '')}>
+            <NavLink
+              key={l.to}
+              to={l.to}
+              end={l.end}
+              className={({ isActive }) => (isActive ? 'active' : '')}
+              onClick={() => setOpen(false)}
+            >
               {l.label}
             </NavLink>
           ))}

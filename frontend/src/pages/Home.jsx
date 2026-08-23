@@ -15,10 +15,14 @@ export default function Home() {
 
   return (
     <div className="container">
-      <section className="hero">
-        {profil?.logo && <img src={fileUrl(profil.logo)} alt="Logo sekolah" className="hero-logo" />}
+      <section className="home-hero">
+        {profil?.logo && <img src={fileUrl(profil.logo)} alt="Logo sekolah" className="home-hero-logo" />}
         <h1>{profil?.nama_sekolah || 'Nama Sekolah'}</h1>
         <p>{profil?.alamat}</p>
+        <div className="home-hero-actions">
+          <Link to="/profil" className="btn">Pelajari Profil</Link>
+          <Link to="/admin/login" className="btn btn-outline">Login Admin</Link>
+        </div>
       </section>
 
       {statistik.length > 0 && (
@@ -42,10 +46,22 @@ export default function Home() {
       )}
 
       <section className="quick-links">
-        <Link to="/prestasi" className="quick-card">🏆 Prestasi</Link>
-        <Link to="/ekstrakurikuler" className="quick-card">🎯 Ekstrakurikuler</Link>
-        <Link to="/fasilitas" className="quick-card">🏫 Fasilitas</Link>
-        <Link to="/guru-tendik" className="quick-card">👩‍🏫 Guru & Tendik</Link>
+        <Link to="/prestasi" className="quick-card">
+          <span className="quick-icon">🏆</span>
+          Prestasi
+        </Link>
+        <Link to="/ekstrakurikuler" className="quick-card">
+          <span className="quick-icon">🎯</span>
+          Ekstrakurikuler
+        </Link>
+        <Link to="/fasilitas" className="quick-card">
+          <span className="quick-icon">🏫</span>
+          Fasilitas
+        </Link>
+        <Link to="/guru-tendik" className="quick-card">
+          <span className="quick-icon">👩‍🏫</span>
+          Guru & Tendik
+        </Link>
       </section>
     </div>
   );

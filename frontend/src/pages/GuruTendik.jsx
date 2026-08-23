@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api, fileUrl } from '../api/client';
+import PageHeader from '../components/PageHeader';
 
 export default function GuruTendik() {
   const [items, setItems] = useState([]);
@@ -30,16 +31,18 @@ export default function GuruTendik() {
   }
 
   return (
-    <div className="container">
-      <h1>Guru & Tenaga Kependidikan</h1>
-      <section>
-        <h2>Guru</h2>
-        <Grid list={guru} />
-      </section>
-      <section>
-        <h2>Tenaga Kependidikan</h2>
-        <Grid list={tendik} />
-      </section>
+    <div className="page-content">
+      <PageHeader title="Guru & Tenaga Kependidikan" subtitle="Pendidik dan tenaga kependidikan sekolah" />
+      <div className="container">
+        <section>
+          <h2>Guru</h2>
+          <Grid list={guru} />
+        </section>
+        <section>
+          <h2>Tenaga Kependidikan</h2>
+          <Grid list={tendik} />
+        </section>
+      </div>
     </div>
   );
 }
