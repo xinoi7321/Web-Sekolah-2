@@ -31,10 +31,8 @@ export default function Home() {
         <p className="relative z-10 text-white/90 mb-6 text-[1.05rem]">{profil?.alamat}</p>
         <div className="relative z-10 flex gap-3 justify-center flex-wrap">
           <Link to="/profil" className="btn">Pelajari Profil</Link>
-          <Link to="/admin/login" className="btn btn-outline">Login Admin</Link>
         </div>
       </section>
-
       {statistik.length > 0 && (
         <section className="stat-grid">
           {statistik.map((s) => (
