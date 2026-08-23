@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from '../../context/AuthContext';
 
 export default function AdminLogin() {
@@ -40,6 +40,7 @@ export default function AdminLogin() {
         <button type="submit" className="btn" disabled={loading}>
           {loading ? 'Memproses...' : 'Masuk'}
         </button>
+        <Link to="/" className="btn btn-outline block w-full text-center mt-3">← Kembali ke Beranda</Link>
       </form>
     </div>
   );
