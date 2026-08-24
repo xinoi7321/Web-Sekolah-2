@@ -53,14 +53,20 @@ export default function AdminPrestasi() {
     <div>
       <h1>Prestasi</h1>
       <form onSubmit={handleSubmit} className="admin-form">
-        <div className="field"><label>Judul</label>
+        <div className="field"><label>Nama Prestasi</label>
           <input value={form.judul} onChange={(e) => set('judul', e.target.value)} required /></div>
         <div className="field"><label>Deskripsi</label>
           <textarea value={form.deskripsi} onChange={(e) => set('deskripsi', e.target.value)} /></div>
         <div className="field-row">
-          <div className="field"><label>Tingkat (mis. Nasional)</label>
-            <input value={form.tingkat} onChange={(e) => set('tingkat', e.target.value)} /></div>
-          <div className="field"><label>Tahun</label>
+          <div className="field"><label>Tingkat Prestasi</label>
+            <select value={form.tingkat} onChange={(e) => set('tingkat', e.target.value)}>
+              <option value="">- Pilih Tingkat -</option>
+              <option value="Kota">Kota</option>
+              <option value="Provinsi">Provinsi</option>
+              <option value="Nasional">Nasional</option>
+              <option value="Internasional">Internasional</option>
+            </select></div>
+          <div className="field"><label>Tahun Prestasi</label>
             <input value={form.tahun} onChange={(e) => set('tahun', e.target.value)} /></div>
         </div>
         <ImageUploadField label="Foto Prestasi" value={form.foto} onChange={(url) => set('foto', url)} />
@@ -74,7 +80,7 @@ export default function AdminPrestasi() {
           <div className="admin-gallery-item" key={p.id}>
             {p.foto && <img src={fileUrl(p.foto)} alt={p.judul} />}
             <h4>{p.judul}</h4>
-            <p className="meta">{p.tingkat} {p.tahun}</p>
+            <p className="meta">{p.tingkat} {p.tingkat && p.tahun ? '·' : ''} {p.tahun}</p>
             <div>
               <button className="btn-link" onClick={() => edit(p)}>Ubah</button>
               <button className="btn-link danger" onClick={() => handleDelete(p.id)}>Hapus</button>

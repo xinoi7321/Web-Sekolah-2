@@ -12,6 +12,9 @@ const menu = [
   { to: '/admin/guru-tendik', label: 'Guru & Tendik' },
   { to: '/admin/misi-struktur', label: 'Misi & Struktur Organisasi' },
   { to: '/admin/sosial-media', label: 'Sosial Media' },
+  { to: '/admin/tata-tertib', label: 'Tata Tertib' },
+  { to: '/admin/program-unggulan', label: 'Program Unggulan' },
+  { to: '/admin/komite', label: 'Komite' },
 ];
 
 export default function AdminLayout() {

@@ -22,6 +22,9 @@ app.use('/api/guru-tendik', require('./routes/guruTendik'));
 app.use('/api/prestasi', require('./routes/prestasi'));
 app.use('/api/ekstrakurikuler', require('./routes/ekstrakurikuler'));
 app.use('/api/fasilitas', require('./routes/fasilitas'));
+app.use('/api/tata-tertib', require('./routes/tataTertib'));
+app.use('/api/program-unggulan', require('./routes/programUnggulan'));
+app.use('/api/komite', require('./routes/komite'));
 
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 

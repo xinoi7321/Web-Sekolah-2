@@ -13,6 +13,10 @@ export default function Home() {
     api.get('/sambutan').then(setSambutan).catch(() => {});
   }, []);
 
+  const siswa = statistik.find((s) => /siswa|peserta didik/i.test(s.label));
+  const guru = statistik.find((s) => /guru|pendidik|tendik/i.test(s.label));
+  const ekskul = statistik.find((s) => /ekstrakurikuler/i.test(s.label));
+
   return (
     <div className="container">
       <section className="relative overflow-hidden bg-brand-gradient text-white rounded-3xl p-10 sm:p-14 text-center my-6 shadow-soft">
@@ -33,7 +37,33 @@ export default function Home() {
           <Link to="/profil" className="btn">Pelajari Profil</Link>
         </div>
       </section>
-      {statistik.length > 0 && (
+      {(siswa || guru || ekskul) && (
+        <section className="stat-grid">
+          {siswa && (
+            <div className="stat-card">
+              <strong>{siswa.nilai}</strong>
+              <span>{siswa.label}</span>
+              <small>{siswa.satuan}</small>
+            </div>
+          )}
+          {guru && (
+            <div className="stat-card">
+              <strong>{guru.nilai}</strong>
+              <span>{guru.label}</span>
+              <small>{guru.satuan}</small>
+            </div>
+          )}
+          {ekskul && (
+            <div className="stat-card">
+              <strong>{ekskul.nilai}</strong>
+              <span>{ekskul.label}</span>
+              <small>{ekskul.satuan}</small>
+            </div>
+          )}
+        </section>
+      )}
+
+      {statistik.length > 0 && !siswa && !guru && !ekskul && (
         <section className="stat-grid">
           {statistik.map((s) => (
             <div className="stat-card" key={s.id}>
@@ -69,6 +99,18 @@ export default function Home() {
         <Link to="/guru-tendik" className="quick-card">
           <span className="quick-icon bg-[linear-gradient(135deg,#10b981,#7c3aed)]">👩‍🏫</span>
           Guru & Tendik
+        </Link>
+        <Link to="/tata-tertib" className="quick-card">
+          <span className="quick-icon bg-[linear-gradient(135deg,#f59e0b,#ef4444)]">📋</span>
+          Tata Tertib
+        </Link>
+        <Link to="/program-unggulan" className="quick-card">
+          <span className="quick-icon bg-[linear-gradient(135deg,#6366f1,#8b5cf6)]">⭐</span>
+          Program Unggulan
+        </Link>
+        <Link to="/komite" className="quick-card">
+          <span className="quick-icon bg-[linear-gradient(135deg,#14b8a6,#0ea5e9)]">🤝</span>
+          Komite
         </Link>
       </section>
     </div>

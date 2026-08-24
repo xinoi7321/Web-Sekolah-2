@@ -9,13 +9,13 @@ router.get('/', async (req, res) => {
 });
 
 router.put('/', requireAuth, async (req, res) => {
-  const { nama_sekolah, singkatan, alamat, npsn, telepon, email, logo, visi, sejarah } = req.body;
+  const { nama_sekolah, singkatan, alamat, npsn, telepon, email, logo, visi, sejarah, maps } = req.body;
   const { rows } = await pool.query(
     `UPDATE profil_sekolah SET
       nama_sekolah=$1, singkatan=$2, alamat=$3, npsn=$4, telepon=$5,
-      email=$6, logo=$7, visi=$8, sejarah=$9
+      email=$6, logo=$7, visi=$8, sejarah=$9, maps=$10
      WHERE id = 1 RETURNING *`,
-    [nama_sekolah, singkatan, alamat, npsn, telepon, email, logo, visi, sejarah]
+    [nama_sekolah, singkatan, alamat, npsn, telepon, email, logo, visi, sejarah, maps]
   );
   res.json(rows[0]);
 });

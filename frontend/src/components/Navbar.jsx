@@ -9,6 +9,9 @@ const links = [
   { to: '/ekstrakurikuler', label: 'Ekstrakurikuler' },
   { to: '/fasilitas', label: 'Fasilitas' },
   { to: '/guru-tendik', label: 'Guru & Tendik' },
+  { to: '/program-unggulan', label: 'Program Unggulan' },
+  { to: '/tata-tertib', label: 'Tata Tertib' },
+  { to: '/komite', label: 'Komite' },
 ];
 
 export default function Navbar() {

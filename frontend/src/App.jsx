@@ -12,6 +12,9 @@ import EkstrakurikulerDetail from './pages/EkstrakurikulerDetail';
 import Fasilitas from './pages/Fasilitas';
 import FasilitasDetail from './pages/FasilitasDetail';
 import GuruTendik from './pages/GuruTendik';
+import TataTertib from './pages/TataTertib';
+import ProgramUnggulan from './pages/ProgramUnggulan';
+import Komite from './pages/Komite';
 
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminLayout from './pages/admin/AdminLayout';
@@ -25,6 +28,9 @@ import AdminFasilitas from './pages/admin/AdminFasilitas';
 import AdminGuruTendik from './pages/admin/AdminGuruTendik';
 import AdminMisiStruktur from './pages/admin/AdminMisiStruktur';
 import AdminSosialMedia from './pages/admin/AdminSosialMedia';
+import AdminTataTertib from './pages/admin/AdminTataTertib';
+import AdminProgramUnggulan from './pages/admin/AdminProgramUnggulan';
+import AdminKomite from './pages/admin/AdminKomite';
 
 function PublicLayout({ children }) {
   return (
@@ -49,6 +55,9 @@ export default function App() {
       <Route path="/fasilitas" element={<PublicLayout><Fasilitas /></PublicLayout>} />
       <Route path="/fasilitas/:id" element={<PublicLayout><FasilitasDetail /></PublicLayout>} />
       <Route path="/guru-tendik" element={<PublicLayout><GuruTendik /></PublicLayout>} />
+      <Route path="/program-unggulan" element={<PublicLayout><ProgramUnggulan /></PublicLayout>} />
+      <Route path="/tata-tertib" element={<PublicLayout><TataTertib /></PublicLayout>} />
+      <Route path="/komite" element={<PublicLayout><Komite /></PublicLayout>} />
 
       {/* Admin */}
       <Route path="/admin/login" element={<AdminLogin />} />
@@ -70,6 +79,9 @@ export default function App() {
         <Route path="guru-tendik" element={<AdminGuruTendik />} />
         <Route path="misi-struktur" element={<AdminMisiStruktur />} />
         <Route path="sosial-media" element={<AdminSosialMedia />} />
+        <Route path="tata-tertib" element={<AdminTataTertib />} />
+        <Route path="program-unggulan" element={<AdminProgramUnggulan />} />
+        <Route path="komite" element={<AdminKomite />} />
       </Route>
     </Routes>
   );

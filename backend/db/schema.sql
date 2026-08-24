@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS profil_sekolah (
   logo TEXT DEFAULT '',
   visi TEXT DEFAULT '',
   sejarah TEXT DEFAULT '',
+  maps TEXT DEFAULT '',
   CONSTRAINT single_row CHECK (id = 1)
 );
 
@@ -128,6 +129,27 @@ CREATE TABLE IF NOT EXISTS sosial_media (
   tiktok TEXT DEFAULT '',
   whatsapp TEXT DEFAULT '',
   CONSTRAINT single_row_sosmed CHECK (id = 1)
+);
+
+CREATE TABLE IF NOT EXISTS tata_tertib (
+  id SERIAL PRIMARY KEY,
+  teks TEXT NOT NULL,
+  urutan INT DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS program_unggulan (
+  id SERIAL PRIMARY KEY,
+  nama TEXT NOT NULL,
+  deskripsi TEXT DEFAULT '',
+  urutan INT DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS komite (
+  id SERIAL PRIMARY KEY,
+  nama TEXT NOT NULL,
+  jabatan TEXT DEFAULT '',
+  foto TEXT DEFAULT '',
+  urutan INT DEFAULT 0
 );
 
 -- Baris default untuk tabel singleton supaya GET pertama tidak error
