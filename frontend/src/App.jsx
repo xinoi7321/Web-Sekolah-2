@@ -15,6 +15,9 @@ import GuruTendik from './pages/GuruTendik';
 import TataTertib from './pages/TataTertib';
 import ProgramUnggulan from './pages/ProgramUnggulan';
 import Komite from './pages/Komite';
+import Kontak from './pages/Kontak';
+import Maps from './pages/Maps';
+import LogoResmi from './pages/LogoResmi';
 
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminLayout from './pages/admin/AdminLayout';
@@ -58,6 +61,9 @@ export default function App() {
       <Route path="/program-unggulan" element={<PublicLayout><ProgramUnggulan /></PublicLayout>} />
       <Route path="/tata-tertib" element={<PublicLayout><TataTertib /></PublicLayout>} />
       <Route path="/komite" element={<PublicLayout><Komite /></PublicLayout>} />
+      <Route path="/kontak" element={<PublicLayout><Kontak /></PublicLayout>} />
+      <Route path="/maps" element={<PublicLayout><Maps /></PublicLayout>} />
+      <Route path="/logo-resmi" element={<PublicLayout><LogoResmi /></PublicLayout>} />
 
       {/* Admin */}
       <Route path="/admin/login" element={<AdminLogin />} />

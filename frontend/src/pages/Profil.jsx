@@ -39,22 +39,6 @@ export default function Profil() {
             {profil?.email && <li><strong>Email:</strong> {profil.email}</li>}
           </ul>
         </section>
-        {profil?.maps && (
-          <section>
-            <h2>Lokasi</h2>
-            <div className="rounded-2xl overflow-hidden shadow-sm border border-slate-200">
-              <iframe
-                src={profil.maps}
-                width="100%"
-                height="350"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                title="Lokasi Sekolah"
-              />
-            </div>
-          </section>
-        )}
         <section>
           <h2>Struktur Organisasi</h2>
           <ul className="struktur-list">

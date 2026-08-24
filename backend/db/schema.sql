@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS profil_sekolah (
   visi TEXT DEFAULT '',
   sejarah TEXT DEFAULT '',
   maps TEXT DEFAULT '',
+  background TEXT DEFAULT '',
   CONSTRAINT single_row CHECK (id = 1)
 );
 
