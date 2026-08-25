@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import SambutanPopup from './components/SambutanPopup';
+import BackToTop from './components/BackToTop';
 import ProtectedRoute from './components/ProtectedRoute';
 
 import Home from './pages/Home';
@@ -12,6 +14,7 @@ import EkstrakurikulerDetail from './pages/EkstrakurikulerDetail';
 import Fasilitas from './pages/Fasilitas';
 import FasilitasDetail from './pages/FasilitasDetail';
 import GuruTendik from './pages/GuruTendik';
+import GuruDetail from './pages/GuruDetail';
 import TataTertib from './pages/TataTertib';
 import ProgramUnggulan from './pages/ProgramUnggulan';
 import Komite from './pages/Komite';
@@ -19,6 +22,7 @@ import Kontak from './pages/Kontak';
 import Maps from './pages/Maps';
 import LogoResmi from './pages/LogoResmi';
 import StrukturOrganisasi from './pages/StrukturOrganisasi';
+import Berita from './pages/Berita';
 import BeritaDetail from './pages/BeritaDetail';
 
 import AdminLogin from './pages/admin/AdminLogin';
@@ -39,13 +43,16 @@ import AdminKomite from './pages/admin/AdminKomite';
 import AdminLogoResmi from './pages/admin/AdminLogoResmi';
 import AdminStrukturOrganisasi from './pages/admin/AdminStrukturOrganisasi';
 import AdminBerita from './pages/admin/AdminBerita';
+import AdminSectionDividers from './pages/admin/AdminSectionDividers';
 
 function PublicLayout({ children }) {
   return (
     <>
       <Navbar />
+      <SambutanPopup />
       <main className="page-content">{children}</main>
       <Footer />
+      <BackToTop />
     </>
   );
 }
@@ -63,6 +70,7 @@ export default function App() {
       <Route path="/fasilitas" element={<PublicLayout><Fasilitas /></PublicLayout>} />
       <Route path="/fasilitas/:id" element={<PublicLayout><FasilitasDetail /></PublicLayout>} />
       <Route path="/guru-tendik" element={<PublicLayout><GuruTendik /></PublicLayout>} />
+      <Route path="/guru-tendik/:id" element={<PublicLayout><GuruDetail /></PublicLayout>} />
       <Route path="/program-unggulan" element={<PublicLayout><ProgramUnggulan /></PublicLayout>} />
       <Route path="/tata-tertib" element={<PublicLayout><TataTertib /></PublicLayout>} />
       <Route path="/komite" element={<PublicLayout><Komite /></PublicLayout>} />
@@ -70,6 +78,7 @@ export default function App() {
       <Route path="/maps" element={<PublicLayout><Maps /></PublicLayout>} />
       <Route path="/logo-resmi" element={<PublicLayout><LogoResmi /></PublicLayout>} />
       <Route path="/struktur-organisasi" element={<PublicLayout><StrukturOrganisasi /></PublicLayout>} />
+      <Route path="/berita" element={<PublicLayout><Berita /></PublicLayout>} />
       <Route path="/berita/:id" element={<PublicLayout><BeritaDetail /></PublicLayout>} />
 
       {/* Admin */}
@@ -98,6 +107,7 @@ export default function App() {
         <Route path="logo-resmi" element={<AdminLogoResmi />} />
         <Route path="struktur-organisasi" element={<AdminStrukturOrganisasi />} />
         <Route path="berita" element={<AdminBerita />} />
+        <Route path="section-dividers" element={<AdminSectionDividers />} />
       </Route>
     </Routes>
   );

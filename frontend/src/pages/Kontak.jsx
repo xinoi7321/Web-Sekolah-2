@@ -1,4 +1,13 @@
+import { useEffect, useState } from 'react';
+import { api } from '../api/client';
+
 export default function Kontak() {
+  const [profil, setProfil] = useState(null);
+
+  useEffect(() => {
+    api.get('/profil-sekolah').then(setProfil).catch(() => {});
+  }, []);
+
   return (
     <div className="page-content">
       <div className="relative overflow-hidden bg-brand-gradient text-white py-14 px-5 mb-2 rounded-b-3xl">
@@ -11,10 +20,10 @@ export default function Kontak() {
       </div>
       <div className="container">
         <div className="bg-white border border-slate-200 rounded-2xl p-7 shadow-sm">
-          <p className="mb-2"><strong>Alamat:</strong> Jl. Pendidikan No. 17, Kecamatan Sukamaju</p>
-          <p className="mb-2"><strong>Telepon:</strong> (021) 123-4567</p>
-          <p className="mb-2"><strong>Email:</strong> info@sekolah.sch.id</p>
-          <p><strong>Jam Operasional:</strong> Senin - Jumat, 07:00 - 15:00 WIB</p>
+          {profil?.alamat && <p className="mb-2"><strong>Alamat:</strong> {profil.alamat}</p>}
+          {profil?.telepon && <p className="mb-2"><strong>Telepon:</strong> {profil.telepon}</p>}
+          {profil?.email && <p className="mb-2"><strong>Email:</strong> {profil.email}</p>}
+          {profil?.jam_operasional && <p><strong>Jam Operasional:</strong> {profil.jam_operasional}</p>}
         </div>
       </div>
     </div>

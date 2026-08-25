@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS profil_sekolah (
   sejarah TEXT DEFAULT '',
   maps TEXT DEFAULT '',
   background TEXT DEFAULT '',
+  jam_operasional TEXT DEFAULT '',
   CONSTRAINT single_row CHECK (id = 1)
 );
 
@@ -75,6 +76,7 @@ CREATE TABLE IF NOT EXISTS prestasi (
   deskripsi TEXT DEFAULT '',
   tingkat TEXT DEFAULT '',
   tahun TEXT DEFAULT '',
+  bulan TEXT DEFAULT '',
   foto TEXT DEFAULT '',
   urutan INT DEFAULT 0,
   created_at TIMESTAMP DEFAULT NOW()
@@ -122,6 +124,7 @@ CREATE TABLE IF NOT EXISTS guru_tendik (
   jabatan TEXT DEFAULT '',
   kategori TEXT DEFAULT 'guru', -- 'guru' atau 'tendik'
   foto TEXT DEFAULT '',
+  motto TEXT DEFAULT '',
   urutan INT DEFAULT 0
 );
 
@@ -191,3 +194,23 @@ INSERT INTO sambutan (id) VALUES (1) ON CONFLICT (id) DO NOTHING;
 INSERT INTO akreditasi (id) VALUES (1) ON CONFLICT (id) DO NOTHING;
 INSERT INTO sosial_media (id) VALUES (1) ON CONFLICT (id) DO NOTHING;
 INSERT INTO logo_resmi (id) VALUES (1) ON CONFLICT (id) DO NOTHING;
+
+CREATE TABLE IF NOT EXISTS section_dividers (
+  id SERIAL PRIMARY KEY,
+  position_key TEXT UNIQUE NOT NULL,
+  image_url TEXT DEFAULT '',
+  urutan INT DEFAULT 0
+);
+
+INSERT INTO section_dividers (position_key) VALUES
+  ('hero_statistik'),
+  ('statistik_sambutan'),
+  ('sambutan_berita'),
+  ('berita_prestasi'),
+  ('prestasi_ekstrakurikuler'),
+  ('ekstrakurikuler_fasilitas'),
+  ('fasilitas_guru'),
+  ('guru_program'),
+  ('program_komite'),
+  ('komite_maps')
+ON CONFLICT (position_key) DO NOTHING;

@@ -11,6 +11,7 @@ const menu = [
     ],
   },
   { to: '/struktur-organisasi', label: 'Struktur Organisasi' },
+  { to: '/berita', label: 'Berita Terbaru' },
   { to: '/prestasi', label: 'Prestasi' },
   { to: '/ekstrakurikuler', label: 'Ekstrakurikuler' },
   { to: '/fasilitas', label: 'Fasilitas' },
@@ -62,16 +63,16 @@ export default function Navbar() {
             {menu.map((m) => (
               <li key={m.to || m.label} className="relative group">
                 {m.children ? (
-                  <button className="px-4 py-3 text-sm font-medium flex items-center gap-1 hover:bg-slate-700 transition">
+                  <button className="px-4 py-3 text-sm font-medium flex items-center gap-1 hover:bg-slate-700 transition-all duration-200">
                     {m.label}
-                    <span className="text-xs">▾</span>
+                    <span className="text-xs transition-transform duration-200 group-hover:rotate-180">▾</span>
                   </button>
                 ) : (
                   <NavLink
                     to={m.to}
                     end={m.end}
                     className={({ isActive }) =>
-                      `block px-4 py-3 text-sm font-medium transition hover:bg-slate-700 ${
+                      `block px-4 py-3 text-sm font-medium transition-all duration-200 hover:bg-slate-700 ${
                         isActive ? 'bg-brand text-white' : 'text-white'
                       }`
                     }
@@ -80,13 +81,13 @@ export default function Navbar() {
                   </NavLink>
                 )}
                 {m.children && (
-                  <ul className="hidden group-hover:block absolute left-0 top-full bg-slate-800 border-t border-slate-700 min-w-[200px] shadow-lg">
+                  <ul className="opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute left-0 top-full bg-slate-800 border-t border-slate-700 min-w-[200px] shadow-lg transition-all duration-300 transform origin-top">
                     {m.children.map((c) => (
                       <li key={c.to}>
                         <NavLink
                           to={c.to}
                           className={({ isActive }) =>
-                            `block px-4 py-2.5 text-sm transition hover:bg-slate-700 ${
+                            `block px-4 py-2.5 text-sm transition-all duration-200 hover:bg-slate-700 ${
                               isActive ? 'bg-brand text-white' : 'text-slate-200'
                             }`
                           }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { api, fileUrl } from '../../api/client';
 import ImageUploadField from '../../components/ImageUploadField';
 
-const empty = { nama: '', nip: '', jabatan: '', kategori: 'guru', foto: '', urutan: 0 };
+const empty = { nama: '', nip: '', jabatan: '', kategori: 'guru', foto: '', motto: '', urutan: 0 };
 
 export default function AdminGuruTendik() {
   const [items, setItems] = useState([]);
@@ -66,9 +66,12 @@ export default function AdminGuruTendik() {
             <select value={form.kategori} onChange={(e) => set('kategori', e.target.value)}>
               <option value="guru">Guru</option>
               <option value="tendik">Tenaga Kependidikan</option>
+              <option value="kepala sekolah">Kepala Sekolah</option>
             </select></div>
         </div>
         <ImageUploadField label="Foto" value={form.foto} onChange={(url) => set('foto', url)} />
+        <div className="field"><label>Motto</label>
+          <textarea value={form.motto} onChange={(e) => set('motto', e.target.value)} placeholder="Motto hidup..." /></div>
         <button type="submit" className="btn">{editingId ? 'Simpan Perubahan' : 'Tambah'}</button>
         {editingId && <button type="button" className="btn btn-outline" onClick={resetForm}>Batal</button>}
         {status && <p className="hint">{status}</p>}
@@ -81,6 +84,7 @@ export default function AdminGuruTendik() {
             <h4>{g.nama}</h4>
             {g.nip && <p className="meta">NIP: {g.nip}</p>}
             <p className="meta">{g.jabatan} · {g.kategori}</p>
+            {g.motto && <p className="meta" style={{fontStyle:'italic'}}>"{g.motto}"</p>}
             <div>
               <button className="btn-link" onClick={() => edit(g)}>Ubah</button>
               <button className="btn-link danger" onClick={() => handleDelete(g.id)}>Hapus</button>

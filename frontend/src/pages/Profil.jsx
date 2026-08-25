@@ -17,25 +17,41 @@ export default function Profil() {
     <div className="page-content">
       <PageHeader title="Profil Sekolah" subtitle="Identitas, visi, misi, dan sejarah sekolah" />
       <div className="container">
-        <section>
-          <h2>Visi</h2>
-          <p>{profil?.visi}</p>
+        <section className="mb-10">
+          <h2 className="text-3xl font-display font-extrabold text-slate-800 mb-4 tracking-tight">Visi</h2>
+          <div className="bg-white border border-slate-200 rounded-2xl p-7 shadow-sm">
+            <p className="text-lg font-semibold text-slate-700 leading-relaxed">{profil?.visi}</p>
+          </div>
+        </section>
+        <section className="mb-10">
+          <h2 className="text-3xl font-display font-extrabold text-slate-800 mb-4 tracking-tight">Misi</h2>
+          <div className="bg-white border border-slate-200 rounded-2xl p-7 shadow-sm">
+            <ul className="space-y-3">
+              {misi.map((m) => (
+                <li key={m.id} className="flex items-start gap-3 text-slate-700">
+                  <span className="mt-2 w-2 h-2 rounded-full bg-brand flex-shrink-0" />
+                  <span className="font-semibold leading-relaxed">{m.teks}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+        <section className="mb-10">
+          <h2 className="text-3xl font-display font-extrabold text-slate-800 mb-4 tracking-tight">Sejarah</h2>
+          <div className="bg-white border border-slate-200 rounded-2xl p-7 shadow-sm">
+            <p className="text-slate-600 leading-relaxed">{profil?.sejarah}</p>
+          </div>
         </section>
         <section>
-          <h2>Misi</h2>
-          <ul>{misi.map((m) => <li key={m.id}>{m.teks}</li>)}</ul>
-        </section>
-        <section>
-          <h2>Sejarah</h2>
-          <p>{profil?.sejarah}</p>
-        </section>
-        <section>
-          <h2>Kontak</h2>
-          <ul className="list-none p-0">
-            {profil?.alamat && <li><strong>Alamat:</strong> {profil.alamat}</li>}
-            {profil?.telepon && <li><strong>Telepon:</strong> {profil.telepon}</li>}
-            {profil?.email && <li><strong>Email:</strong> {profil.email}</li>}
-          </ul>
+          <h2 className="text-3xl font-display font-extrabold text-slate-800 mb-4 tracking-tight">Kontak</h2>
+          <div className="bg-white border border-slate-200 rounded-2xl p-7 shadow-sm">
+            <ul className="space-y-2 list-none p-0">
+              {profil?.alamat && <li className="flex items-start gap-2"><strong>Alamat:</strong> <span>{profil.alamat}</span></li>}
+              {profil?.telepon && <li className="flex items-start gap-2"><strong>Telepon:</strong> <span>{profil.telepon}</span></li>}
+              {profil?.email && <li className="flex items-start gap-2"><strong>Email:</strong> <span>{profil.email}</span></li>}
+              {profil?.jam_operasional && <li className="flex items-start gap-2"><strong>Jam Operasional:</strong> <span>{profil.jam_operasional}</span></li>}
+            </ul>
+          </div>
         </section>
       </div>
     </div>

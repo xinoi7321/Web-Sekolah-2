@@ -22,12 +22,12 @@ function useInView(options) {
 }
 
 function AnimatedSection({ children, className = '' }) {
-  const [ref, isInView] = useInView({ threshold: 0.1 });
+  const [ref, isInView] = useInView({ threshold: 0.08 });
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      className={`will-change-transform opacity-0 translate-y-6 transition-all duration-700 ease-out ${
+        isInView ? 'opacity-100 translate-y-0' : ''
       } ${className}`}
     >
       {children}
@@ -65,6 +65,21 @@ function AnimatedNumber({ value, duration = 2000 }) {
   return <span ref={ref}>{displayValue}</span>;
 }
 
+function SectionDivider({ dividerKey, dividers }) {
+  const url = dividers[dividerKey];
+  if (!url) return null;
+  return (
+    <div className="w-full">
+      <img
+        src={fileUrl(url)}
+        alt=""
+        className="w-full h-auto max-h-40 object-contain mx-auto"
+        loading="lazy"
+      />
+    </div>
+  );
+}
+
 export default function Home() {
   const [profil, setProfil] = useState(null);
   const [statistik, setStatistik] = useState([]);
@@ -76,6 +91,7 @@ export default function Home() {
   const [guruTendik, setGuruTendik] = useState([]);
   const [programUnggulan, setProgramUnggulan] = useState([]);
   const [komite, setKomite] = useState([]);
+  const [dividers, setDividers] = useState({});
 
   useEffect(() => {
     api.get('/profil-sekolah').then(setProfil).catch(() => {});
@@ -88,6 +104,7 @@ export default function Home() {
     api.get('/guru-tendik').then(setGuruTendik).catch(() => {});
     api.get('/program-unggulan').then(setProgramUnggulan).catch(() => {});
     api.get('/komite').then(setKomite).catch(() => {});
+    api.get('/section-dividers').then(setDividers).catch(() => {});
   }, []);
 
   return (
@@ -121,6 +138,8 @@ export default function Home() {
         </div>
       </section>
 
+      <SectionDivider dividerKey="hero_statistik" dividers={dividers} />
+
       {/* Statistik dengan animasi menghitung */}
       {statistik.length > 0 && (
         <AnimatedSection>
@@ -138,6 +157,8 @@ export default function Home() {
           </section>
         </AnimatedSection>
       )}
+
+      <SectionDivider dividerKey="statistik_sambutan" dividers={dividers} />
 
       {/* Sambutan */}
       {sambutan?.aktif && (
@@ -165,13 +186,15 @@ export default function Home() {
         </AnimatedSection>
       )}
 
+      <SectionDivider dividerKey="sambutan_berita" dividers={dividers} />
+
       {/* Berita Terbaru */}
       <AnimatedSection>
         <section className="max-w-[1140px] mx-auto px-5 my-10">
           <h2 className="text-2xl font-display font-bold text-slate-800 mb-2">Berita Terbaru</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {berita.slice(0, 3).map((b) => (
-              <Link to={`/berita/${b.id}`} className="clickable-card" key={b.id}>
+          <div className="flex flex-row gap-6 overflow-x-auto pb-4">
+            {berita.map((b) => (
+              <Link to={`/berita/${b.id}`} className="clickable-card flex-shrink-0 w-72" key={b.id}>
                 {b.foto ? (
                   <img src={fileUrl(b.foto)} alt={b.judul} />
                 ) : (
@@ -188,13 +211,15 @@ export default function Home() {
         </section>
       </AnimatedSection>
 
+      <SectionDivider dividerKey="berita_prestasi" dividers={dividers} />
+
       {/* Prestasi */}
       <AnimatedSection>
         <section className="max-w-[1140px] mx-auto px-5 my-10">
           <h2 className="text-2xl font-display font-bold text-slate-800 mb-2">Prestasi</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {prestasi.slice(0, 3).map((p) => (
-              <Link to="/prestasi" className="clickable-card" key={p.id}>
+          <div className="flex flex-row gap-6 overflow-x-auto pb-4">
+            {prestasi.map((p) => (
+              <Link to="/prestasi" className="clickable-card flex-shrink-0 w-72" key={p.id}>
                 {p.foto ? (
                   <img src={fileUrl(p.foto)} alt={p.judul} />
                 ) : (
@@ -211,13 +236,15 @@ export default function Home() {
         </section>
       </AnimatedSection>
 
+      <SectionDivider dividerKey="prestasi_ekstrakurikuler" dividers={dividers} />
+
       {/* Ekstrakurikuler */}
       <AnimatedSection>
         <section className="max-w-[1140px] mx-auto px-5 my-10">
           <h2 className="text-2xl font-display font-bold text-slate-800 mb-2">Ekstrakurikuler</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {ekstrakurikuler.slice(0, 3).map((e) => (
-              <Link to="/ekstrakurikuler" className="clickable-card" key={e.id}>
+          <div className="flex flex-row gap-6 overflow-x-auto pb-4">
+            {ekstrakurikuler.map((e) => (
+              <Link to="/ekstrakurikuler" className="clickable-card flex-shrink-0 w-72" key={e.id}>
                 {e.thumbnail ? (
                   <img src={fileUrl(e.thumbnail)} alt={e.nama} />
                 ) : (
@@ -234,13 +261,15 @@ export default function Home() {
         </section>
       </AnimatedSection>
 
+      <SectionDivider dividerKey="ekstrakurikuler_fasilitas" dividers={dividers} />
+
       {/* Fasilitas */}
       <AnimatedSection>
         <section className="max-w-[1140px] mx-auto px-5 my-10">
           <h2 className="text-2xl font-display font-bold text-slate-800 mb-2">Fasilitas</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {fasilitas.slice(0, 3).map((f) => (
-              <Link to="/fasilitas" className="clickable-card" key={f.id}>
+          <div className="flex flex-row gap-6 overflow-x-auto pb-4">
+            {fasilitas.map((f) => (
+              <Link to="/fasilitas" className="clickable-card flex-shrink-0 w-72" key={f.id}>
                 {f.thumbnail ? (
                   <img src={fileUrl(f.thumbnail)} alt={f.nama} />
                 ) : (
@@ -257,13 +286,15 @@ export default function Home() {
         </section>
       </AnimatedSection>
 
+      <SectionDivider dividerKey="fasilitas_guru" dividers={dividers} />
+
       {/* Guru & Tendik */}
       <AnimatedSection>
         <section className="max-w-[1140px] mx-auto px-5 my-10">
           <h2 className="text-2xl font-display font-bold text-slate-800 mb-2">Guru & Tenaga Kependidikan</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-            {guruTendik.slice(0, 4).map((g) => (
-              <Link to="/guru-tendik" className="staff-card" key={g.id}>
+          <div className="flex flex-row gap-6 overflow-x-auto pb-4">
+            {guruTendik.map((g) => (
+              <Link to={`/guru-tendik/${g.id}`} className="staff-card flex-shrink-0 w-40" key={g.id}>
                 {g.foto ? (
                   <img src={fileUrl(g.foto)} alt={g.nama} />
                 ) : (
@@ -278,13 +309,15 @@ export default function Home() {
         </section>
       </AnimatedSection>
 
+      <SectionDivider dividerKey="guru_program" dividers={dividers} />
+
       {/* Program Unggulan */}
       <AnimatedSection>
         <section className="max-w-[1140px] mx-auto px-5 my-10">
           <h2 className="text-2xl font-display font-bold text-slate-800 mb-2">Program Unggulan</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {programUnggulan.slice(0, 2).map((p) => (
-              <Link to="/program-unggulan" className="clickable-card" key={p.id}>
+          <div className="flex flex-row gap-6 overflow-x-auto pb-4">
+            {programUnggulan.map((p) => (
+              <Link to="/program-unggulan" className="clickable-card flex-shrink-0 w-72" key={p.id}>
                 {p.foto && (
                   <img src={fileUrl(p.foto)} alt={p.nama} className="h-48 object-cover w-full" />
                 )}
@@ -299,13 +332,15 @@ export default function Home() {
         </section>
       </AnimatedSection>
 
+      <SectionDivider dividerKey="program_komite" dividers={dividers} />
+
       {/* Komite */}
       <AnimatedSection>
         <section className="max-w-[1140px] mx-auto px-5 my-10">
           <h2 className="text-2xl font-display font-bold text-slate-800 mb-2">Komite</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-            {komite.slice(0, 4).map((k) => (
-              <Link to="/komite" className="staff-card" key={k.id}>
+          <div className="flex flex-row gap-6 overflow-x-auto pb-4">
+            {komite.map((k) => (
+              <Link to="/komite" className="staff-card flex-shrink-0 w-40" key={k.id}>
                 {k.foto ? (
                   <img src={fileUrl(k.foto)} alt={k.nama} />
                 ) : (
@@ -319,6 +354,28 @@ export default function Home() {
           {komite.length === 0 && <p className="text-slate-500">Belum ada data komite.</p>}
         </section>
       </AnimatedSection>
+
+      <SectionDivider dividerKey="komite_maps" dividers={dividers} />
+
+      {/* Maps */}
+      {profil?.maps && (
+        <AnimatedSection>
+          <section className="max-w-[1140px] mx-auto px-5 my-10">
+            <h2 className="text-2xl font-display font-bold text-slate-800 mb-2">Lokasi Sekolah</h2>
+            <div className="rounded-2xl overflow-hidden shadow-sm border border-slate-200">
+              <iframe
+                src={profil.maps}
+                width="100%"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                title="Lokasi Sekolah"
+              />
+            </div>
+          </section>
+        </AnimatedSection>
+      )}
     </div>
   );
 }

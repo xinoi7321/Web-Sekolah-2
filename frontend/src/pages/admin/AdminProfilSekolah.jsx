@@ -4,7 +4,7 @@ import ImageUploadField from '../../components/ImageUploadField';
 
 const empty = {
   nama_sekolah: '', singkatan: '', alamat: '', npsn: '', telepon: '',
-  email: '', logo: '', visi: '', sejarah: '', maps: '', background: '',
+  email: '', logo: '', visi: '', sejarah: '', maps: '', background: '', jam_operasional: '',
 };
 
 export default function AdminProfilSekolah() {
@@ -46,6 +46,8 @@ export default function AdminProfilSekolah() {
           <input value={form.telepon} onChange={(e) => set('telepon', e.target.value)} /></div>
         <div className="field"><label>Email</label>
           <input value={form.email} onChange={(e) => set('email', e.target.value)} /></div>
+        <div className="field"><label>Jam Operasional</label>
+          <input value={form.jam_operasional} onChange={(e) => set('jam_operasional', e.target.value)} placeholder="Senin - Jumat, 07:00 - 15:00 WIB" /></div>
         <div className="field"><label>Google Maps (URL embed)</label>
           <input value={form.maps} onChange={(e) => set('maps', e.target.value)} placeholder="https://maps.google.com/..." /></div>
         <ImageUploadField label="Logo Sekolah" value={form.logo} onChange={(url) => set('logo', url)} />

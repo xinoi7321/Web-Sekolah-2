@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import BackToTop from '../../components/BackToTop';
 
 const menu = [
   { to: '/admin', label: 'Dashboard', end: true },
@@ -19,6 +20,7 @@ const menu = [
   { to: '/admin/program-unggulan', label: 'Program Unggulan' },
   { to: '/admin/komite', label: 'Komite' },
   { to: '/admin/logo-resmi', label: 'Logo Resmi' },
+  { to: '/admin/section-dividers', label: 'Pembatas Beranda' },
 ];
 
 export default function AdminLayout() {
@@ -115,6 +117,7 @@ export default function AdminLayout() {
       <main className="max-w-[1140px] mx-auto px-5 py-6">
         <Outlet />
       </main>
+      <BackToTop />
     </div>
   );
 }

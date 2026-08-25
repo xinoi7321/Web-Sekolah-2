@@ -10,10 +10,8 @@ export default function Footer() {
 
   const links = [
     { key: 'instagram', label: 'Instagram', base: 'https://instagram.com/' },
-    { key: 'facebook', label: 'Facebook', base: 'https://facebook.com/' },
     { key: 'youtube', label: 'YouTube', base: 'https://youtube.com/' },
     { key: 'tiktok', label: 'TikTok', base: 'https://tiktok.com/' },
-    { key: 'whatsapp', label: 'WhatsApp', base: 'https://wa.me/' },
   ];
 
   function href(key) {
@@ -38,6 +36,7 @@ export default function Footer() {
         ))}
       </div>
       <p className="my-1 opacity-95">&copy; {new Date().getFullYear()} Website Sekolah. Dikelola melalui panel admin.</p>
+      <p className="my-1 opacity-80 text-sm">Dibuat oleh <span className="font-semibold">Orbit Digital Labs</span></p>
       <a href="/admin/login" className="inline-block mt-1 text-white bg-white/20 px-4 py-1.5 rounded-full font-semibold transition hover:bg-white/30">Login Admin</a>
     </footer>
   );
