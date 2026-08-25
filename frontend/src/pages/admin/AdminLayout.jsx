@@ -7,15 +7,18 @@ const menu = [
   { to: '/admin/profil-sekolah', label: 'Identitas & Profil' },
   { to: '/admin/sambutan', label: 'Sambutan' },
   { to: '/admin/statistik', label: 'Statistik' },
+  { to: '/admin/berita', label: 'Berita / News' },
   { to: '/admin/prestasi', label: 'Prestasi' },
   { to: '/admin/ekstrakurikuler', label: 'Ekstrakurikuler' },
   { to: '/admin/fasilitas', label: 'Fasilitas' },
   { to: '/admin/guru-tendik', label: 'Guru & Tendik' },
-  { to: '/admin/misi-struktur', label: 'Misi & Struktur' },
+  { to: '/admin/misi-struktur', label: 'Misi' },
+  { to: '/admin/struktur-organisasi', label: 'Struktur Organisasi' },
   { to: '/admin/sosial-media', label: 'Sosial Media' },
   { to: '/admin/tata-tertib', label: 'Tata Tertib' },
   { to: '/admin/program-unggulan', label: 'Program Unggulan' },
   { to: '/admin/komite', label: 'Komite' },
+  { to: '/admin/logo-resmi', label: 'Logo Resmi' },
 ];
 
 export default function AdminLayout() {
@@ -33,8 +36,8 @@ export default function AdminLayout() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <header className="bg-white shadow-sm sticky top-0 z-50">
+    <div className="min-h-screen bg-amber-50/30">
+      <header className="bg-amber-50/50 shadow-sm sticky top-0 z-50">
         <div className="max-w-[1140px] mx-auto px-5 flex items-center justify-between h-14">
           <h1 className="font-display font-bold text-lg text-slate-800">Panel Admin</h1>
           <div className="flex items-center gap-3">

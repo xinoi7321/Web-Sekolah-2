@@ -4,14 +4,20 @@ import PageHeader from '../components/PageHeader';
 
 export default function Komite() {
   const [items, setItems] = useState([]);
+  const [periodeAktif, setPeriodeAktif] = useState('');
 
   useEffect(() => {
-    api.get('/komite').then(setItems).catch(() => {});
+    api.get('/komite').then((data) => {
+      setItems(data);
+      if (data.length > 0 && data[0].periode) {
+        setPeriodeAktif(data[0].periode);
+      }
+    }).catch(() => {});
   }, []);
 
   return (
     <div className="page-content">
-      <PageHeader title="Komite" subtitle="Anggota komite sekolah periode saat ini" />
+      <PageHeader title="Komite" subtitle={periodeAktif ? `Anggota komite sekolah periode ${periodeAktif}` : 'Anggota komite sekolah'} />
       <div className="container">
         <div className="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-6">
           {items.map((k) => (
@@ -23,6 +29,7 @@ export default function Komite() {
               )}
               <h4>{k.nama}</h4>
               <p>{k.jabatan}</p>
+              {k.periode && <p className="meta">Periode: {k.periode}</p>}
             </div>
           ))}
         </div>

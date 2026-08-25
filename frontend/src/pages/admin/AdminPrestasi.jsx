@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { api, fileUrl } from '../../api/client';
 import ImageUploadField from '../../components/ImageUploadField';
 
-const empty = { judul: '', deskripsi: '', tingkat: '', tahun: '', foto: '', urutan: 0 };
+const empty = { judul: '', nama_siswa: '', deskripsi: '', tingkat: '', tahun: '', foto: '', urutan: 0 };
 
 export default function AdminPrestasi() {
   const [items, setItems] = useState([]);
@@ -55,6 +55,8 @@ export default function AdminPrestasi() {
       <form onSubmit={handleSubmit} className="admin-form">
         <div className="field"><label>Nama Prestasi</label>
           <input value={form.judul} onChange={(e) => set('judul', e.target.value)} required /></div>
+        <div className="field"><label>Nama Siswa</label>
+          <input value={form.nama_siswa} onChange={(e) => set('nama_siswa', e.target.value)} /></div>
         <div className="field"><label>Deskripsi</label>
           <textarea value={form.deskripsi} onChange={(e) => set('deskripsi', e.target.value)} /></div>
         <div className="field-row">
@@ -80,6 +82,7 @@ export default function AdminPrestasi() {
           <div className="admin-gallery-item" key={p.id}>
             {p.foto && <img src={fileUrl(p.foto)} alt={p.judul} />}
             <h4>{p.judul}</h4>
+            {p.nama_siswa && <p className="meta">Oleh: {p.nama_siswa}</p>}
             <p className="meta">{p.tingkat} {p.tingkat && p.tahun ? '·' : ''} {p.tahun}</p>
             <div>
               <button className="btn-link" onClick={() => edit(p)}>Ubah</button>

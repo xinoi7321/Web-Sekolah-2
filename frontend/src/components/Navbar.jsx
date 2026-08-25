@@ -8,21 +8,21 @@ const menu = [
     children: [
       { to: '/profil', label: 'Visi & Misi' },
       { to: '/sambutan', label: 'Sambutan Kepsek' },
-      { to: '/profil', label: 'Struktur Organisasi' },
     ],
   },
+  { to: '/struktur-organisasi', label: 'Struktur Organisasi' },
   { to: '/prestasi', label: 'Prestasi' },
   { to: '/ekstrakurikuler', label: 'Ekstrakurikuler' },
   { to: '/fasilitas', label: 'Fasilitas' },
   { to: '/guru-tendik', label: 'Guru & Tendik' },
+  { to: '/komite', label: 'Komite' },
+  { to: '/logo-resmi', label: 'Logo Resmi' },
   {
     label: 'Info',
     children: [
       { to: '/program-unggulan', label: 'Program Unggulan' },
       { to: '/tata-tertib', label: 'Tata Tertib' },
-      { to: '/komite', label: 'Komite' },
       { to: '/maps', label: 'Maps' },
-      { to: '/logo-resmi', label: 'Logo Resmi' },
     ],
   },
   { to: '/kontak', label: 'Kontak' },
@@ -38,9 +38,13 @@ export default function Navbar() {
   }
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
+    <header className="bg-slate-800 shadow-md sticky top-0 z-50">
       <div className="max-w-[1140px] mx-auto px-5 flex items-center justify-between h-16">
-        <Link to="/" className="font-display font-bold text-lg text-slate-800">
+        <Link to="/" className="font-display font-bold text-lg" style={{
+          color: 'white',
+          textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0 0 8px rgba(0,0,0,0.5)',
+          letterSpacing: '0.5px'
+        }}>
           SD NEGERI KALIBATA 01
         </Link>
         <button
@@ -102,11 +106,11 @@ export default function Navbar() {
       {drawerOpen && (
         <>
           <div className="fixed inset-0 bg-black/50 z-40 md:hidden" onClick={closeDrawer} />
-          <aside className="fixed top-0 right-0 h-full w-[80%] max-w-[320px] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out md:hidden overflow-y-auto">
-            <div className="flex items-center justify-between p-5 border-b border-slate-200">
-              <span className="font-display font-bold text-lg text-slate-800">Menu</span>
+          <aside className="fixed top-0 right-0 h-full w-[80%] max-w-[320px] bg-slate-800 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out md:hidden overflow-y-auto">
+            <div className="flex items-center justify-between p-5 border-b border-slate-700">
+              <span className="font-display font-bold text-lg text-white">Menu</span>
               <button
-                className="border-0 text-slate-600 text-2xl cursor-pointer w-8 h-8 flex items-center justify-center"
+                className="border-0 text-white text-2xl cursor-pointer w-8 h-8 flex items-center justify-center"
                 onClick={closeDrawer}
                 aria-label="Close menu"
               >
@@ -119,21 +123,21 @@ export default function Navbar() {
                   {m.children ? (
                     <>
                       <button
-                        className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100 rounded-xl transition"
+                        className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-slate-200 hover:bg-slate-700 rounded-xl transition"
                         onClick={() => setExpanded(expanded === m.label ? null : m.label)}
                       >
                         {m.label}
                         <span className="text-xs transition-transform duration-200" style={{ transform: expanded === m.label ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
                       </button>
                       {expanded === m.label && (
-                        <ul className="ml-4 mt-1 space-y-1 border-l-2 border-slate-200 pl-3">
+                        <ul className="ml-4 mt-1 space-y-1 border-l-2 border-slate-600 pl-3">
                           {m.children.map((c) => (
                             <li key={c.to}>
                               <NavLink
                                 to={c.to}
                                 className={({ isActive }) =>
                                   `block px-4 py-2.5 text-sm rounded-lg transition ${
-                                    isActive ? 'bg-brand text-white' : 'text-slate-600 hover:bg-slate-100'
+                                    isActive ? 'bg-brand text-white' : 'text-slate-300 hover:bg-slate-700'
                                   }`
                                 }
                                 onClick={closeDrawer}
@@ -151,7 +155,7 @@ export default function Navbar() {
                       end={m.end}
                       className={({ isActive }) =>
                         `block px-4 py-3 text-sm font-semibold rounded-xl transition ${
-                          isActive ? 'bg-brand text-white' : 'text-slate-700 hover:bg-slate-100'
+                          isActive ? 'bg-brand text-white' : 'text-slate-200 hover:bg-slate-700'
                         }`
                       }
                       onClick={closeDrawer}

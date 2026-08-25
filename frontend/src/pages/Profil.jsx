@@ -5,12 +5,10 @@ import PageHeader from '../components/PageHeader';
 export default function Profil() {
   const [profil, setProfil] = useState(null);
   const [misi, setMisi] = useState([]);
-  const [struktur, setStruktur] = useState([]);
 
   useEffect(() => {
     api.get('/profil-sekolah').then(setProfil).catch(() => {});
     api.get('/misi').then(setMisi).catch(() => {});
-    api.get('/struktur-organisasi').then(setStruktur).catch(() => {});
   }, []);
 
   if (!profil) return <div className="container">Memuat...</div>;
@@ -37,14 +35,6 @@ export default function Profil() {
             {profil?.alamat && <li><strong>Alamat:</strong> {profil.alamat}</li>}
             {profil?.telepon && <li><strong>Telepon:</strong> {profil.telepon}</li>}
             {profil?.email && <li><strong>Email:</strong> {profil.email}</li>}
-          </ul>
-        </section>
-        <section>
-          <h2>Struktur Organisasi</h2>
-          <ul className="struktur-list">
-            {struktur.map((s) => (
-              <li key={s.id}><strong>{s.jabatan}</strong> — {s.nama}</li>
-            ))}
           </ul>
         </section>
       </div>

@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react';
 import { api, fileUrl } from '../../api/client';
 import ImageUploadField from '../../components/ImageUploadField';
 
-const empty = { nama: '', jabatan: '', periode: '', foto: '', urutan: 0 };
+const empty = { nama: '', foto: '', urutan: 0 };
 
-export default function AdminKomite() {
+export default function AdminStrukturOrganisasi() {
   const [items, setItems] = useState([]);
   const [form, setForm] = useState(empty);
   const [editingId, setEditingId] = useState(null);
   const [status, setStatus] = useState('');
 
   function load() {
-    api.get('/komite').then(setItems).catch(() => {});
+    api.get('/struktur-organisasi').then(setItems).catch(() => {});
   }
   useEffect(load, []);
 
@@ -33,8 +33,8 @@ export default function AdminKomite() {
     e.preventDefault();
     setStatus('Menyimpan...');
     try {
-      if (editingId) await api.put(`/komite/${editingId}`, form);
-      else await api.post('/komite', form);
+      if (editingId) await api.put(`/struktur-organisasi/${editingId}`, form);
+      else await api.post('/struktur-organisasi', form);
       resetForm();
       load();
       setStatus('Tersimpan.');
@@ -45,35 +45,33 @@ export default function AdminKomite() {
 
   async function handleDelete(id) {
     if (!confirm('Hapus data ini?')) return;
-    await api.del(`/komite/${id}`);
+    await api.del(`/struktur-organisasi/${id}`);
     load();
   }
 
   return (
     <div>
-      <h1>Komite</h1>
+      <h1>Struktur Organisasi</h1>
       <form onSubmit={handleSubmit} className="admin-form">
         <div className="field"><label>Nama</label>
-          <input value={form.nama} onChange={(e) => set('nama', e.target.value)} required /></div>
-        <div className="field"><label>Jabatan</label>
-          <input value={form.jabatan} onChange={(e) => set('jabatan', e.target.value)} /></div>
-        <div className="field"><label>Periode</label>
-          <input value={form.periode} onChange={(e) => set('periode', e.target.value)} placeholder="contoh: 2024-2026" /></div>
-        <ImageUploadField label="Foto" value={form.foto} onChange={(url) => set('foto', url)} />
+          <input value={form.nama} onChange={(e) => set('nama', e.target.value)} /></div>
+        <ImageUploadField label="Upload Foto Struktur Organisasi" value={form.foto} onChange={(url) => set('foto', url)} />
         <button type="submit" className="btn">{editingId ? 'Simpan Perubahan' : 'Tambah'}</button>
         {editingId && <button type="button" className="btn btn-outline" onClick={resetForm}>Batal</button>}
         {status && <p className="hint">{status}</p>}
       </form>
       <div className="admin-gallery-grid">
-        {items.map((k) => (
-          <div className="admin-gallery-item" key={k.id}>
-            {k.foto && <img src={fileUrl(k.foto)} alt={k.nama} />}
-            <h4>{k.nama}</h4>
-            <p className="meta">{k.jabatan}</p>
-            {k.periode && <p className="meta">Periode: {k.periode}</p>}
+        {items.map((s) => (
+          <div className="admin-gallery-item" key={s.id}>
+            {s.foto ? (
+              <img src={fileUrl(s.foto)} alt={s.nama || 'Struktur Organisasi'} />
+            ) : (
+              <div className="photo-placeholder">Tidak ada foto</div>
+            )}
+            {s.nama && <h4>{s.nama}</h4>}
             <div>
-              <button className="btn-link" onClick={() => edit(k)}>Ubah</button>
-              <button className="btn-link danger" onClick={() => handleDelete(k.id)}>Hapus</button>
+              <button className="btn-link" onClick={() => edit(s)}>Ubah</button>
+              <button className="btn-link danger" onClick={() => handleDelete(s.id)}>Hapus</button>
             </div>
           </div>
         ))}

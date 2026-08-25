@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../api/client';
 
-const empty = { label: '', nilai: '', satuan: '', urutan: 0 };
+const empty = { label: '', nilai: '' };
 
 export default function AdminStatistik() {
   const [items, setItems] = useState([]);
@@ -55,19 +55,17 @@ export default function AdminStatistik() {
       <form onSubmit={handleSubmit} className="admin-form admin-form-inline">
         <input placeholder="Label (mis. Peserta Didik)" value={form.label} onChange={(e) => set('label', e.target.value)} required />
         <input placeholder="Nilai (mis. 1.024)" value={form.nilai} onChange={(e) => set('nilai', e.target.value)} required />
-        <input placeholder="Satuan (mis. siswa)" value={form.satuan} onChange={(e) => set('satuan', e.target.value)} />
-        <input type="number" placeholder="Urutan" value={form.urutan} onChange={(e) => set('urutan', Number(e.target.value))} />
         <button type="submit" className="btn">{editingId ? 'Simpan Perubahan' : 'Tambah'}</button>
         {editingId && <button type="button" className="btn btn-outline" onClick={resetForm}>Batal</button>}
       </form>
       {status && <p className="hint">{status}</p>}
 
       <table className="admin-table">
-        <thead><tr><th>Label</th><th>Nilai</th><th>Satuan</th><th>Urutan</th><th></th></tr></thead>
+        <thead><tr><th>Label</th><th>Nilai</th><th></th></tr></thead>
         <tbody>
           {items.map((s) => (
             <tr key={s.id}>
-              <td>{s.label}</td><td>{s.nilai}</td><td>{s.satuan}</td><td>{s.urutan}</td>
+              <td>{s.label}</td><td>{s.nilai}</td>
               <td>
                 <button className="btn-link" onClick={() => edit(s)}>Ubah</button>
                 <button className="btn-link danger" onClick={() => handleDelete(s.id)}>Hapus</button>

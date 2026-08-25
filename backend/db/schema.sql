@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS struktur_organisasi (
   id SERIAL PRIMARY KEY,
   jabatan TEXT NOT NULL,
   nama TEXT NOT NULL,
+  foto TEXT DEFAULT '',
   urutan INT DEFAULT 0
 );
 
@@ -70,6 +71,7 @@ CREATE TABLE IF NOT EXISTS akreditasi (
 CREATE TABLE IF NOT EXISTS prestasi (
   id SERIAL PRIMARY KEY,
   judul TEXT NOT NULL,
+  nama_siswa TEXT DEFAULT '',
   deskripsi TEXT DEFAULT '',
   tingkat TEXT DEFAULT '',
   tahun TEXT DEFAULT '',
@@ -116,6 +118,7 @@ CREATE TABLE IF NOT EXISTS fasilitas_galeri (
 CREATE TABLE IF NOT EXISTS guru_tendik (
   id SERIAL PRIMARY KEY,
   nama TEXT NOT NULL,
+  nip TEXT DEFAULT '',
   jabatan TEXT DEFAULT '',
   kategori TEXT DEFAULT 'guru', -- 'guru' atau 'tendik'
   foto TEXT DEFAULT '',
@@ -142,6 +145,7 @@ CREATE TABLE IF NOT EXISTS program_unggulan (
   id SERIAL PRIMARY KEY,
   nama TEXT NOT NULL,
   deskripsi TEXT DEFAULT '',
+  foto TEXT DEFAULT '',
   urutan INT DEFAULT 0
 );
 
@@ -149,7 +153,35 @@ CREATE TABLE IF NOT EXISTS komite (
   id SERIAL PRIMARY KEY,
   nama TEXT NOT NULL,
   jabatan TEXT DEFAULT '',
+  periode TEXT DEFAULT '',
   foto TEXT DEFAULT '',
+  urutan INT DEFAULT 0
+);
+
+-- Logo Resmi: tabel terpisah untuk kelola logo sekolah
+CREATE TABLE IF NOT EXISTS logo_resmi (
+  id SMALLINT PRIMARY KEY DEFAULT 1,
+  foto TEXT DEFAULT '',
+  keterangan TEXT DEFAULT '',
+  CONSTRAINT single_row_logo CHECK (id = 1)
+);
+
+-- Berita/News: berita terbaru sekolah
+CREATE TABLE IF NOT EXISTS berita (
+  id SERIAL PRIMARY KEY,
+  judul TEXT NOT NULL,
+  deskripsi TEXT DEFAULT '',
+  foto TEXT DEFAULT '',
+  urutan INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Galeri foto berita (multiple foto per berita)
+CREATE TABLE IF NOT EXISTS berita_galeri (
+  id SERIAL PRIMARY KEY,
+  berita_id INT NOT NULL REFERENCES berita(id) ON DELETE CASCADE,
+  url TEXT NOT NULL,
+  caption TEXT DEFAULT '',
   urutan INT DEFAULT 0
 );
 
@@ -158,3 +190,4 @@ INSERT INTO profil_sekolah (id) VALUES (1) ON CONFLICT (id) DO NOTHING;
 INSERT INTO sambutan (id) VALUES (1) ON CONFLICT (id) DO NOTHING;
 INSERT INTO akreditasi (id) VALUES (1) ON CONFLICT (id) DO NOTHING;
 INSERT INTO sosial_media (id) VALUES (1) ON CONFLICT (id) DO NOTHING;
+INSERT INTO logo_resmi (id) VALUES (1) ON CONFLICT (id) DO NOTHING;

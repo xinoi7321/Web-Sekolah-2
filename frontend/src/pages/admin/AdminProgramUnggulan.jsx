@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { api } from '../../api/client';
+import { api, fileUrl } from '../../api/client';
+import ImageUploadField from '../../components/ImageUploadField';
 
-const empty = { nama: '', deskripsi: '', urutan: 0 };
+const empty = { nama: '', deskripsi: '', foto: '', urutan: 0 };
 
 export default function AdminProgramUnggulan() {
   const [items, setItems] = useState([]);
@@ -56,15 +57,17 @@ export default function AdminProgramUnggulan() {
           <input value={form.nama} onChange={(e) => set('nama', e.target.value)} required /></div>
         <div className="field"><label>Deskripsi</label>
           <textarea value={form.deskripsi} onChange={(e) => set('deskripsi', e.target.value)} /></div>
+        <ImageUploadField label="Foto Program" value={form.foto} onChange={(url) => set('foto', url)} />
         <button type="submit" className="btn">{editingId ? 'Simpan Perubahan' : 'Tambah'}</button>
         {editingId && <button type="button" className="btn btn-outline" onClick={resetForm}>Batal</button>}
         {status && <p className="hint">{status}</p>}
       </form>
       <table className="admin-table">
-        <thead><tr><th>Nama</th><th>Deskripsi</th><th></th></tr></thead>
+        <thead><tr><th>Foto</th><th>Nama</th><th>Deskripsi</th><th></th></tr></thead>
         <tbody>
           {items.map((p) => (
             <tr key={p.id}>
+              <td>{p.foto ? <img src={fileUrl(p.foto)} alt={p.nama} className="thumb" /> : '-'}</td>
               <td>{p.nama}</td>
               <td>{p.deskripsi?.slice(0, 80)}</td>
               <td>

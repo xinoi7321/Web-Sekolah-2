@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { api, fileUrl } from '../../api/client';
 import ImageUploadField from '../../components/ImageUploadField';
 
-const empty = { nama: '', jabatan: '', kategori: 'guru', foto: '', urutan: 0 };
+const empty = { nama: '', nip: '', jabatan: '', kategori: 'guru', foto: '', urutan: 0 };
 
 export default function AdminGuruTendik() {
   const [items, setItems] = useState([]);
@@ -56,15 +56,17 @@ export default function AdminGuruTendik() {
         <div className="field-row">
           <div className="field"><label>Nama</label>
             <input value={form.nama} onChange={(e) => set('nama', e.target.value)} required /></div>
+          <div className="field"><label>NIP</label>
+            <input value={form.nip} onChange={(e) => set('nip', e.target.value)} /></div>
+        </div>
+        <div className="field-row">
           <div className="field"><label>Jabatan / Mapel</label>
             <input value={form.jabatan} onChange={(e) => set('jabatan', e.target.value)} /></div>
-        </div>
-        <div className="field">
-          <label>Kategori</label>
-          <select value={form.kategori} onChange={(e) => set('kategori', e.target.value)}>
-            <option value="guru">Guru</option>
-            <option value="tendik">Tenaga Kependidikan</option>
-          </select>
+          <div className="field"><label>Kategori</label>
+            <select value={form.kategori} onChange={(e) => set('kategori', e.target.value)}>
+              <option value="guru">Guru</option>
+              <option value="tendik">Tenaga Kependidikan</option>
+            </select></div>
         </div>
         <ImageUploadField label="Foto" value={form.foto} onChange={(url) => set('foto', url)} />
         <button type="submit" className="btn">{editingId ? 'Simpan Perubahan' : 'Tambah'}</button>
@@ -77,6 +79,7 @@ export default function AdminGuruTendik() {
           <div className="admin-gallery-item" key={g.id}>
             {g.foto && <img src={fileUrl(g.foto)} alt={g.nama} />}
             <h4>{g.nama}</h4>
+            {g.nip && <p className="meta">NIP: {g.nip}</p>}
             <p className="meta">{g.jabatan} · {g.kategori}</p>
             <div>
               <button className="btn-link" onClick={() => edit(g)}>Ubah</button>

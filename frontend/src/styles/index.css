@@ -10,7 +10,7 @@
     @apply scroll-smooth;
   }
   body {
-    @apply font-sans bg-slate-50 text-slate-800 antialiased leading-relaxed;
+    @apply font-sans bg-amber-50/30 text-slate-800 antialiased leading-relaxed;
   }
   h1, h2, h3, h4 {
     @apply font-display text-slate-800;
@@ -91,7 +91,7 @@
     @apply grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-5 my-10;
   }
   .stat-card {
-    @apply relative bg-white border border-slate-200 rounded-2xl p-6 text-center overflow-hidden shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-soft;
+    @apply relative bg-amber-50/50 border border-slate-200 rounded-2xl p-6 text-center overflow-hidden shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-soft;
   }
   .stat-card::before {
     @apply content-[''] absolute top-0 left-0 right-0 h-[5px] bg-brand-gradient;
@@ -107,7 +107,7 @@
   }
 
   .section-preview {
-    @apply bg-white border border-slate-200 rounded-2xl p-7 my-7 shadow-sm;
+    @apply bg-amber-50/50 border border-slate-200 rounded-2xl p-7 my-7 shadow-sm;
   }
   .section-preview h2 {
     @apply mt-0;
@@ -118,7 +118,7 @@
     @apply grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-5 my-10;
   }
   .quick-card {
-    @apply bg-white border border-slate-200 rounded-2xl p-7 text-center font-semibold text-slate-800 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-soft flex flex-col items-center gap-3;
+    @apply bg-amber-50/50 border border-slate-200 rounded-2xl p-7 text-center font-semibold text-slate-800 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-soft flex flex-col items-center gap-3;
   }
   .quick-card .quick-icon {
     @apply w-16 h-16 rounded-full flex items-center justify-center text-2xl text-white shadow-glow;
@@ -149,7 +149,7 @@
     @apply grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-6 mt-5;
   }
   .clickable-card, .gallery-card {
-    @apply bg-white border border-slate-200 rounded-2xl overflow-hidden block shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-soft;
+    @apply bg-amber-50/50 border border-slate-200 rounded-2xl overflow-hidden block shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-soft;
   }
   .clickable-card img, .gallery-card img {
     @apply w-full h-[170px] object-cover block transition-transform duration-500 ease-out;
@@ -181,7 +181,7 @@
 
   /* ---- Sambutan ---- */
   .sambutan-grid {
-    @apply grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8 mt-6 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm;
+    @apply grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8 mt-6 bg-amber-50/50 border border-slate-200 rounded-2xl p-8 shadow-sm;
   }
   .sambutan-photo {
     @apply text-center;
@@ -198,7 +198,7 @@
     @apply grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-6 mt-5;
   }
   .staff-card {
-    @apply text-center bg-white border border-slate-200 rounded-2xl p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-soft;
+    @apply text-center bg-amber-50/50 border border-slate-200 rounded-2xl p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-soft;
   }
   .staff-card img, .staff-card .photo-placeholder.avatar {
     @apply w-24 h-24 rounded-full object-cover mx-auto mb-3 block border-4 border-transparent ring-4 ring-brand/20;
@@ -250,7 +250,7 @@
     @apply min-h-screen flex items-center justify-center bg-slate-50 p-6;
   }
   .admin-login-form {
-    @apply bg-white border border-slate-200 rounded-2xl p-8 w-[340px] shadow-soft;
+    @apply bg-amber-50/50 border border-slate-200 rounded-2xl p-8 w-[340px] shadow-soft;
   }
   .admin-shell {
     @apply grid grid-cols-1 md:grid-cols-[250px_1fr] min-h-screen;
@@ -277,7 +277,7 @@
     @apply p-8 max-w-[960px];
   }
   .admin-form {
-    @apply bg-white border border-slate-200 rounded-2xl p-7 max-w-[680px] shadow-sm;
+    @apply bg-amber-50/50 border border-slate-200 rounded-2xl p-7 max-w-[680px] shadow-sm;
   }
   .admin-form-inline {
     @apply flex gap-2 flex-wrap items-end my-4;
@@ -286,13 +286,13 @@
     @apply p-2 px-3 border border-slate-200 rounded-xl;
   }
   .admin-table {
-    @apply w-full border-collapse mt-6 bg-white rounded-2xl overflow-hidden shadow-sm;
+    @apply w-full border-collapse mt-6 bg-amber-50/50 rounded-2xl overflow-hidden shadow-sm;
   }
   .admin-table th, .admin-table td {
     @apply text-left p-3 border-b border-slate-200 text-sm;
   }
   .admin-table th {
-    @apply bg-slate-100 font-display;
+    @apply bg-amber-100/50 font-display;
   }
   .admin-list {
     @apply list-none p-0;
@@ -304,7 +304,7 @@
     @apply grid grid-cols-[repeat(auto-fill,minmax(170px,1fr))] gap-4 mt-6;
   }
   .admin-gallery-item {
-    @apply bg-white border border-slate-200 rounded-xl p-3 text-center shadow-sm;
+    @apply bg-amber-50/50 border border-slate-200 rounded-xl p-3 text-center shadow-sm;
   }
   .admin-gallery-item img {
     @apply w-full h-[120px] object-cover rounded-lg mb-2;
@@ -314,6 +314,9 @@
   }
   .admin-gallery-item .meta {
     @apply text-slate-500 text-xs my-1;
+  }
+  .thumb {
+    @apply w-12 h-12 object-cover rounded-lg;
   }
   .admin-galeri-manager {
     @apply mt-8 pt-6 border-t-2 border-dashed border-slate-200;

@@ -18,6 +18,8 @@ import Komite from './pages/Komite';
 import Kontak from './pages/Kontak';
 import Maps from './pages/Maps';
 import LogoResmi from './pages/LogoResmi';
+import StrukturOrganisasi from './pages/StrukturOrganisasi';
+import BeritaDetail from './pages/BeritaDetail';
 
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminLayout from './pages/admin/AdminLayout';
@@ -34,6 +36,9 @@ import AdminSosialMedia from './pages/admin/AdminSosialMedia';
 import AdminTataTertib from './pages/admin/AdminTataTertib';
 import AdminProgramUnggulan from './pages/admin/AdminProgramUnggulan';
 import AdminKomite from './pages/admin/AdminKomite';
+import AdminLogoResmi from './pages/admin/AdminLogoResmi';
+import AdminStrukturOrganisasi from './pages/admin/AdminStrukturOrganisasi';
+import AdminBerita from './pages/admin/AdminBerita';
 
 function PublicLayout({ children }) {
   return (
@@ -64,6 +69,8 @@ export default function App() {
       <Route path="/kontak" element={<PublicLayout><Kontak /></PublicLayout>} />
       <Route path="/maps" element={<PublicLayout><Maps /></PublicLayout>} />
       <Route path="/logo-resmi" element={<PublicLayout><LogoResmi /></PublicLayout>} />
+      <Route path="/struktur-organisasi" element={<PublicLayout><StrukturOrganisasi /></PublicLayout>} />
+      <Route path="/berita/:id" element={<PublicLayout><BeritaDetail /></PublicLayout>} />
 
       {/* Admin */}
       <Route path="/admin/login" element={<AdminLogin />} />
@@ -88,6 +95,9 @@ export default function App() {
         <Route path="tata-tertib" element={<AdminTataTertib />} />
         <Route path="program-unggulan" element={<AdminProgramUnggulan />} />
         <Route path="komite" element={<AdminKomite />} />
+        <Route path="logo-resmi" element={<AdminLogoResmi />} />
+        <Route path="struktur-organisasi" element={<AdminStrukturOrganisasi />} />
+        <Route path="berita" element={<AdminBerita />} />
       </Route>
     </Routes>
   );

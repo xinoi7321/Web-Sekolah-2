@@ -25,6 +25,8 @@ app.use('/api/fasilitas', require('./routes/fasilitas'));
 app.use('/api/tata-tertib', require('./routes/tataTertib'));
 app.use('/api/program-unggulan', require('./routes/programUnggulan'));
 app.use('/api/komite', require('./routes/komite'));
+app.use('/api/logo-resmi', require('./routes/logoResmi'));
+app.use('/api/berita', require('./routes/berita'));
 
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 

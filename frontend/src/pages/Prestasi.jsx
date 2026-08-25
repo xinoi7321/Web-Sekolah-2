@@ -23,8 +23,9 @@ export default function Prestasi() {
                 <div className="photo-placeholder">Tidak ada foto</div>
               )}
               <div className="gallery-card-body">
-                <h3>{p.judul}</h3>
-                <p className="meta">{p.tingkat} {p.tingkat && p.tahun ? '·' : ''} {p.tahun}</p>
+              <h3>{p.judul}</h3>
+              {p.nama_siswa && <p className="meta">Oleh: {p.nama_siswa}</p>}
+              <p className="meta">{p.tingkat} {p.tingkat && p.tahun ? '·' : ''} {p.tahun}</p>
                 <p>{p.deskripsi}</p>
               </div>
             </div>
