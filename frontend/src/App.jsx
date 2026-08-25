@@ -43,7 +43,6 @@ import AdminKomite from './pages/admin/AdminKomite';
 import AdminLogoResmi from './pages/admin/AdminLogoResmi';
 import AdminStrukturOrganisasi from './pages/admin/AdminStrukturOrganisasi';
 import AdminBerita from './pages/admin/AdminBerita';
-import AdminSectionDividers from './pages/admin/AdminSectionDividers';
 
 function PublicLayout({ children }) {
   return (
@@ -107,7 +106,6 @@ export default function App() {
         <Route path="logo-resmi" element={<AdminLogoResmi />} />
         <Route path="struktur-organisasi" element={<AdminStrukturOrganisasi />} />
         <Route path="berita" element={<AdminBerita />} />
-        <Route path="section-dividers" element={<AdminSectionDividers />} />
       </Route>
     </Routes>
   );

@@ -34,7 +34,7 @@ export default function GuruTendik() {
 
   return (
     <div className="page-content">
-      <PageHeader title="Guru & Tenaga Kependidikan" subtitle="Pendidik dan tenaga kependidikan sekolah" />
+      <PageHeader title="Kepala Sekolah, Guru dan Tendik" subtitle="Pendidik dan tenaga kependidikan sekolah" />
       <div className="container">
         {kepala.length > 0 && (
           <section className="mb-10">
@@ -47,7 +47,7 @@ export default function GuruTendik() {
           <Grid list={guru} />
         </section>
         <section>
-          <h2>Tenaga Kependidikan</h2>
+          <h2>Tendik</h2>
           <Grid list={tendik} />
         </section>
       </div>

@@ -15,7 +15,7 @@ const menu = [
   { to: '/prestasi', label: 'Prestasi' },
   { to: '/ekstrakurikuler', label: 'Ekstrakurikuler' },
   { to: '/fasilitas', label: 'Fasilitas' },
-  { to: '/guru-tendik', label: 'Guru & Tendik' },
+  { to: '/guru-tendik', label: 'Kepala Sekolah,Guru & Tendik' },
   { to: '/komite', label: 'Komite' },
   { to: '/logo-resmi', label: 'Logo Resmi' },
   {

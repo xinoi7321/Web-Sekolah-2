@@ -7,6 +7,7 @@ function useInView(options) {
   const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') return;
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setIsInView(true);
@@ -41,10 +42,12 @@ function AnimatedNumber({ value, duration = 2000 }) {
 
   useEffect(() => {
     if (!isInView) return;
+    if (value === undefined || value === null) return;
 
-    const numericValue = parseInt(value.replace(/\D/g, ''), 10) || 0;
+    const strValue = String(value);
+    const numericValue = parseInt(strValue.replace(/\D/g, ''), 10) || 0;
     const startTime = Date.now();
-    const suffix = value.replace(/[0-9]/g, '');
+    const suffix = strValue.replace(/[0-9]/g, '');
 
     const animate = () => {
       const elapsed = Date.now() - startTime;
@@ -92,6 +95,8 @@ export default function Home() {
   const [programUnggulan, setProgramUnggulan] = useState([]);
   const [komite, setKomite] = useState([]);
   const [dividers, setDividers] = useState({});
+  const kategoriOrder = { 'kepala sekolah': 1, 'guru': 2, 'tendik': 3 };
+  const sortedGuruTendik = [...guruTendik].sort((a, b) => (kategoriOrder[a.kategori] || 99) - (kategoriOrder[b.kategori] || 99));
 
   useEffect(() => {
     api.get('/profil-sekolah').then(setProfil).catch(() => {});
@@ -291,9 +296,9 @@ export default function Home() {
       {/* Guru & Tendik */}
       <AnimatedSection>
         <section className="max-w-[1140px] mx-auto px-5 my-10">
-          <h2 className="text-2xl font-display font-bold text-slate-800 mb-2">Guru & Tenaga Kependidikan</h2>
+          <h2 className="text-2xl font-display font-bold text-slate-800 mb-2">Kepala Sekolah, Guru dan Tendik</h2>
           <div className="flex flex-row gap-6 overflow-x-auto pb-4">
-            {guruTendik.map((g) => (
+            {sortedGuruTendik.map((g) => (
               <Link to={`/guru-tendik/${g.id}`} className="staff-card flex-shrink-0 w-40" key={g.id}>
                 {g.foto ? (
                   <img src={fileUrl(g.foto)} alt={g.nama} />
