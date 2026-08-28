@@ -214,3 +214,11 @@ INSERT INTO section_dividers (position_key) VALUES
   ('program_komite'),
   ('komite_maps')
 ON CONFLICT (position_key) DO NOTHING;
+
+CREATE TABLE IF NOT EXISTS background_slideshow (
+  id SERIAL PRIMARY KEY,
+  url TEXT NOT NULL,
+  caption TEXT DEFAULT '',
+  urutan INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT NOW()
+);

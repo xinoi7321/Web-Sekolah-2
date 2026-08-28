@@ -68,6 +68,39 @@ function AnimatedNumber({ value, duration = 2000 }) {
   return <span ref={ref}>{displayValue}</span>;
 }
 
+function BackgroundSlideshow({ images }) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (!images || images.length <= 1) return;
+    const timer = setInterval(() => {
+      setIndex((i) => (i + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [images]);
+
+  if (!images || images.length === 0) return null;
+
+  const current = images[index];
+
+  return (
+    <div className="absolute inset-0">
+      {images.map((img, i) => (
+        <div
+          key={img.id || i}
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${i === index ? 'slide-zoom' : ''}`}
+          style={{
+            backgroundImage: `url(${fileUrl(img.url)})`,
+            opacity: i === index ? 1 : 0,
+            zIndex: i === index ? 1 : 0,
+          }}
+        />
+      ))}
+      <div className="absolute inset-0 bg-black/40" style={{ zIndex: 2 }} />
+    </div>
+  );
+}
+
 function SectionDivider({ dividerKey, dividers }) {
   const url = dividers[dividerKey];
   if (!url) return null;
@@ -95,6 +128,7 @@ export default function Home() {
   const [programUnggulan, setProgramUnggulan] = useState([]);
   const [komite, setKomite] = useState([]);
   const [dividers, setDividers] = useState({});
+  const [slideshow, setSlideshow] = useState([]);
   const kategoriOrder = { 'kepala sekolah': 1, 'guru': 2, 'tendik': 3 };
   const sortedGuruTendik = [...guruTendik].sort((a, b) => (kategoriOrder[a.kategori] || 99) - (kategoriOrder[b.kategori] || 99));
 
@@ -110,18 +144,25 @@ export default function Home() {
     api.get('/program-unggulan').then(setProgramUnggulan).catch(() => {});
     api.get('/komite').then(setKomite).catch(() => {});
     api.get('/section-dividers').then(setDividers).catch(() => {});
+    api.get('/background-slideshow').then(setSlideshow).catch(() => {});
   }, []);
 
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative overflow-hidden text-white py-16 px-5 text-center shadow-soft" style={{
-        backgroundImage: profil?.background ? `url(${fileUrl(profil.background)})` : undefined,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundColor: '#dc2626',
+      <section className="relative overflow-hidden text-white py-20 px-5 text-center shadow-soft" style={{
+        backgroundColor: '#0f172a',
       }}>
-        {!profil?.background && (
+        <BackgroundSlideshow images={slideshow} />
+        {slideshow.length === 0 && profil?.background && (
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${fileUrl(profil.background)})` }}
+          >
+            <div className="absolute inset-0 bg-black/40" />
+          </div>
+        )}
+        {slideshow.length === 0 && !profil?.background && (
           <>
             <div className="absolute bg-white/10 blur-3xl rounded-full w-56 h-56 -top-20 -left-10"></div>
             <div className="absolute bg-white/10 blur-3xl rounded-full w-48 h-48 -bottom-16 -right-10"></div>

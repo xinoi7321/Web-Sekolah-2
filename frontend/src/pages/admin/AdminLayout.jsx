@@ -20,6 +20,7 @@ const menu = [
   { to: '/admin/program-unggulan', label: 'Program Unggulan' },
   { to: '/admin/komite', label: 'Komite' },
   { to: '/admin/logo-resmi', label: 'Logo Resmi' },
+  { to: '/admin/background-slideshow', label: 'Background Slideshow' },
 ];
 
 export default function AdminLayout() {

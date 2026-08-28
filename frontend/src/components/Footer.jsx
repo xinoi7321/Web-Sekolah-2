@@ -23,7 +23,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="text-center text-white bg-brand-gradient py-10 px-4 mt-14 rounded-t-3xl">
+    <footer className="text-center text-white bg-brand py-10 px-4 mt-14 rounded-t-3xl">
       <div className="flex gap-5 justify-center flex-wrap mt-4 mb-2">
         <a href="/profil" className="opacity-95 font-medium transition hover:opacity-100 hover:underline">Profil</a>
         <a href="/ekstrakurikuler" className="opacity-95 font-medium transition hover:opacity-100 hover:underline">Ekstrakurikuler</a>

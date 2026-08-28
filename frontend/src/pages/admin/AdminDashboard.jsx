@@ -14,6 +14,7 @@ export default function AdminDashboard() {
     { to: '/admin/tata-tertib', label: 'Tata Tertib', icon: '📜' },
     { to: '/admin/program-unggulan', label: 'Program Unggulan', icon: '⭐' },
     { to: '/admin/komite', label: 'Komite', icon: '🤝' },
+    { to: '/admin/background-slideshow', label: 'Background Slideshow', icon: '🖼️' },
   ];
 
   return (

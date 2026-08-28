@@ -28,6 +28,7 @@ app.use('/api/komite', require('./routes/komite'));
 app.use('/api/logo-resmi', require('./routes/logoResmi'));
 app.use('/api/berita', require('./routes/berita'));
 app.use('/api/section-dividers', require('./routes/sectionDividers'));
+app.use('/api/background-slideshow', require('./routes/backgroundSlideshow'));
 
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 
